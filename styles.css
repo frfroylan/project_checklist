@@ -1,49 +1,80 @@
 *{
-                margin: 0;
-                padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .h1-text{
-                margin-left: 20px;
-                margin-top: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 .wrapper{
-                width: 1400px;
-                height: auto;
-                margin: 0 auto;
-                margin-top: 30px;
+    width: 1400px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30px;
 }
 .tab-pane{
-                width: 90%;
-                height: auto;
-                margin: 0 auto;
-                margin-top: 30px;
-                /*border: 1px solid red;*/
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30px;
+    /*border: 1px solid red;*/
 }
 .prod-files,
 .prod-img,
 .prod-page,
 .prod-land,
 .prod-other{
-                width: 100%;
-                height: auto;
-                /*border: 1px solid blue;*/
+    width: 100%;
+    height: auto;
+    /*border: 1px solid blue;*/
 }
 .prod-files > .row,
 .prod-img > .row,
 .prod-page > .row,
 .prod-land > .row,
 .prod-other > .row{
-                margin-left: 10px;
+    margin-left: 10px;
 }
 span{
-                display: inline-block;
-                margin-top: 5px;
+    display: inline-block;
+    margin-top: 5px;
 }
 .glyphicon{
-                display: inline;
-                margin: 0;
+    display: inline;
+    margin: 0;
 }
 .checkbox{
-                display: inline-block;
-                float: right;
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+}
+#newProductName{
+    height: 30px;
+}
+.newProdNameText{
+    font-size: 20px;
+}
+button{
+    width: 80px;
+    height: 30px;
+    border: none;
+    background-color: #1C3E6C;
+    color: #fff;
+}
+button:hover{
+    background-color: #4A7EBA;
+}
+#myProgress {
+    position: relative;
+    width: 1100px;
+    margin: 0 auto;
+    margin-top: 500px;
+    height: 30px;
+    background-color: lightgrey;
+}
+.myBar {
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    background-color: #00B16A;
 }

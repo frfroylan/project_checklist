@@ -1,30 +1,41 @@
 script = function(){
-                newTabPanel = $('#new');
-                newTab = $('#newTab');
- 
+                var newTabPanel = $('#new');
+                var newTab = $('#newTab');
+
+                /**If there are spaces in the product name replace them
+                with _ because the product name is used for the ID**/
+                sanitize = function(x){
+                                var sanitized = x;
+                                sanitized = sanitized.replace(' ' , '_');
+                                return sanitized;
+                };
+                /**Generates new tab with ID = tabname **/
                 genLi = function(){
                                 $('.active').removeClass('active');
                                 var prodName = $('#newProductName').val();
-                                var newLi = $('<li role="presentation" class="active" id="newTab"><a href="#' + prodName + '" role="tab" data-toggle="tab">'+ prodName +'</a></li>');
+                                var prodNameSanitized = sanitize(prodName);
+
+                                var newLi = $('<li role="presentation" class="active" id="newTab"><a href="#' + prodNameSanitized + '" role="tab" data-toggle="tab">'+ prodName +'</a></li>');
                                 newTab.before(newLi);
-                                genNewTabCont(prodName);
-                }
+                                genNewTabCont(prodNameSanitized);
+                };
+                /**Generates new tab content (checkboxes)**/
                 genNewTabCont = function(id){
                                 var newTabPane = $(
-                                                '<div role="tabpanel" class="tab-pane active row" id="'+ id +'">' +
+                                                '<div role="tabpanel" class="tab-pane active row" id="'+ id +'" onmouseup="countChecked('+ id +')">' +
                                                                 '<div class="col-lg-6 content-left">' +
                                                                                 '<div class="prod-files">' +
                                                                                                 '<h3 class="prod-header">Files:</h3>' +
                                                                                                 '<div class="row">' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text" class="checkbox-text">Brochure &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">PDF Specs Active &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Application Diagram &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text" class="checkbox-text">Brochure &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">PDF Specs Active &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Application Diagram &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">CMS Specs HTML &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Panel Drawing &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Videos &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">CMS Specs HTML &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Panel Drawing &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Videos &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                 '</div>' +
                                                                                 '</div>' +
@@ -32,8 +43,8 @@ script = function(){
                                                                                                 '<h3 class="prod-header">Images:</h3>' +
                                                                                                 '<div class="row">' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Product Images &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Gallery &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Product Images &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Gallery &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                                 '<div class="col-sm-6">' +
                                                                                                                 '</div>' +
@@ -45,13 +56,13 @@ script = function(){
                                                                                                 '<h3 class="prod-header">Product Page:</h3>' +
                                                                                                 '<div class="row">' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Product XML &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Features = Active &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Product Shortcuts on &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Product XML &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Features = Active &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Product Shortcuts on &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Part numbers Active &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Product Page Live &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Part numbers Active &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Product Page Live &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                 '</div>' +
                                                                                 '</div>' +
@@ -59,12 +70,12 @@ script = function(){
                                                                                                 '<h3 class="prod-header">Landing Page:</h3>' +
                                                                                                 '<div class="row">' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Landing Page Needed? &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Landing Page Slideshow &nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Landing Page Images &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Landing Page Needed? &nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Landing Page Slideshow &nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Landing Page Images &nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Landing Page Active &nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Landing Page Active &nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                 '</div>' +
                                                                                 '</div>' +
@@ -72,19 +83,51 @@ script = function(){
                                                                                                 '<h3 class="prod-header">Other:</h3>' +
                                                                                                 '<div class="row">' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Homepage Slide&nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Regen Search Suggestion&nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">Regen Nav Bar&nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Homepage Slide&nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Regen Search Suggestion&nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">Regen Nav Bar&nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                                 '<div class="col-sm-6">' +
-                                                                                                                                '<span class="checkbox-text">Regen Product shortcuts&nbsp;</span><input class="checkbox" type="checkbox"><br>' +
-                                                                                                                                '<span class="checkbox-text">AE Specs&nbsp;</span><input class="checkbox" type="checkbox">' +
+                                                                                                                                '<span class="checkbox-text">Regen Product shortcuts&nbsp;</span><input id=' + id + '  class="checkbox" type="checkbox"><br>' +
+                                                                                                                                '<span class="checkbox-text">AE Specs&nbsp;</span><input id=' + id + ' class="checkbox" type="checkbox">' +
                                                                                                                 '</div>' +
                                                                                                 '</div>' +
                                                                                 '</div>' +
                                                                 '</div>' +
+                                                                '<div id="myProgress">' +
+                                                                                '<div id=' + id + ' class="myBar"></div>' +
+                                                                '</div>' +
                                                 '</div>'
                                 );
                                 newTabPanel.before(newTabPane);
+                };
+                /**Checks if "Enter" was pressed, if it was add the product
+                to a new tab**/
+                $('#new').keypress(function(e){
+                                var key = e.which;
+                                if(key == 13) 
+                                {
+                                                genLi();
+                                }
+                })
+                countChecked = function(barID) {
+                                var str = $('.myBar');
+                                var collection = barID.item(23);
+                                console.log(typeof collection);
+                                console.log(str);
+
+                                // var elem = barID[23];
+                                // console.log(barID[23]);
+                                // console.log(elem.css());
+                                // var width = 0;
+                                // var width = elem.width();
+                                // if($(this).prop('checked') == true){
+                                //            width = width + 50;
+                                //            elem.width(width);
+                                // }
+                                // else{
+                                //            width = width - 50;
+                                //            elem.width(width);
+                                // }
                 }
 }
