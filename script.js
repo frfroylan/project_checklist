@@ -111,23 +111,6 @@ script = function(){
                                 }
                 })
                 countChecked = function(barID) {
-                                var str = $('.myBar');
-                                var collection = barID.item(23);
-                                console.log(typeof collection);
-                                console.log(str);
 
-                                // var elem = barID[23];
-                                // console.log(barID[23]);
-                                // console.log(elem.css());
-                                // var width = 0;
-                                // var width = elem.width();
-                                // if($(this).prop('checked') == true){
-                                //            width = width + 50;
-                                //            elem.width(width);
-                                // }
-                                // else{
-                                //            width = width - 50;
-                                //            elem.width(width);
-                                // }
                 }
 }
