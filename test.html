@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Product Checklist</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="styles.css">
+	<script text="text/javascript" src="script.js"></script>
+</head>
+<body>
+
+	<h1 class="h1-text">Product Checklist</h1>
+
+	<div class="wrapper">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist" id="tabs">
+			<li role="presentation" class="active" id="newTab"><a href="#new" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></li>
+		</ul>
+		<!-- Tab info -->
+		<div class="tab-content" id="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="new" >
+				<div role="tabpanel" class="tab-pane active row"> 
+					<div class="col-sm-6 content-left"> 
+						<div class="prod-files"> 
+							<h3 class="prod-header">Files:</h3> 
+							<div class="row"> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text" class="checkbox-text">Brochure &nbsp;</span><input class="checkbox" type="checkbox" ><br> 
+									<span class="checkbox-text">PDF Specs Active &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Application Diagram &nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">CMS Specs HTML &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Panel Drawing &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Videos &nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+							</div> 
+						</div> 
+						<div class="prod-img"> 
+							<h3 class="prod-header">Images:</h3> 
+							<div class="row"> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Product Images &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Gallery &nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+								<div class="col-sm-6"> 
+								</div> 
+							</div> 
+						</div> 
+					</div> 
+					<div class="col-sm-6 content-right"> 
+						<div class="prod-page"> 
+							<h3 class="prod-header">Product Page:</h3> 
+							<div class="row"> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Product XML &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Features = Active &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Product Shortcuts on &nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Part numbers Active &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Product Page Live &nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+							</div> 
+						</div> 
+						<div class="prod-land"> 
+							<h3 class="prod-header">Landing Page:</h3> 
+							<div class="row"> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Landing Page Needed? &nbsp;</span><input   class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Landing Page Slideshow &nbsp;</span><input class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Landing Page Images &nbsp;</span><input  class="checkbox" type="checkbox"> 
+								</div> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Landing Page Active &nbsp;</span><input  class="checkbox" type="checkbox"> 
+								</div> 
+							</div> 
+						</div> 
+						<div class="prod-other"> 
+							<h3 class="prod-header">Other:</h3> 
+							<div class="row"> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Homepage Slide&nbsp;</span><input  class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Regen Search Suggestion&nbsp;</span><input  class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">Regen Nav Bar&nbsp;</span><input  class="checkbox" type="checkbox"> 
+								</div> 
+								<div class="col-sm-6"> 
+									<span class="checkbox-text">Regen Product shortcuts&nbsp;</span><input  class="checkbox" type="checkbox"><br> 
+									<span class="checkbox-text">AE Specs&nbsp;</span><input class="checkbox" type="checkbox"> 
+								</div> 
+							</div> 
+						</div> 
+					</div> 
+					<div id="myProgress">
+						<div id="myBar" class="myBar"></div>
+					</div>
+					<div id="count"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+
+$('.checkbox').click(function(){
+	var elem = $('.myBar');
+	var width = 0;
+	var width = elem.width();
+	if($(this).prop('checked') == true){
+		width = width + 50;
+		elem.width(width);
+	}
+	else{
+		width = width - 50;
+		elem.width(width);
+	}
+})
+</script>
+</body>
+</html>
