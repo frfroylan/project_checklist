@@ -2,190 +2,128 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Project Checklist</title>
+	<title>Test</title>
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="styles.css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles.css">
+	<script text="text/javascript" src="script.js"></script>
 
-	<!-- <script text="text/javascript" src="script.js"></script> -->
-<script type="text/javascript">
-
-	// Document.Ready is the function that runs once on page load.
-	// Wire up your event listeners here
-	$(document).ready(function () {
-		$('#new').keypress(function (e) {
-			var key = e.which;
-			if (key == 13) {
-				AddTabFromTemplate($('#newProductName').val());
-			}
-		})
-
-		$('#btnAddNew').on('click', function () {
-			AddTabFromTemplate($('#newProductName').val());
-		});
-
-		// Listen for all js-deletetab in the context of #tab-content, even if the tab panels are dynamically generated
-		$('#tab-content').on('click', '.js-deletetab', function () {
-			// Find the parent tab-pane's ID and call the Remove Tab function
-			RemoveTab($(this).parents('.tab-pane').attr('id'));
-		});
-
-	});
-
-	// Other functions can go outisde document.ready and are available to call any time
-	function AddTabFromTemplate(newID) {
-		// Sanitize ID in here is fine
-		var domID = newID.replace(' ', '_');
-
-		// Make a copy of the template
-		$newTab = $('#template').clone();
-		$newTab.attr('id', domID);
-
-		// Insert the new tab page right before our "new" tab.
-		$newTab.insertBefore('#new');
-
-		// Create the tab item, too
-		$('<li role="presentation"><a href="#' + domID + '" role="tab" data-toggle="tab">' + newID + '</a></li>').insertBefore('#newTab');
-
-		//Update ProgressBar
-		ProgressBar($newTab);
-	
-	}
-
-	//Uses the newly created tab to target its progress bar
-	function ProgressBar( currentTab){
-		var checkboxes = currentTab.find('input');
-		checkboxes.on('click', function(){
-			var emptyValue = 0;
-
-			//Checks each checkbox in the tab for checked or not checked
-			checkboxes.each(function() {
-
-				//Will have to update this once Dennis adds the Landing page logic 
-				if($(this).is(':checked')){
-					emptyValue += 4.6;
-				}
-			});
-			currentTab.find('.progress-bar').css('width', emptyValue + '%').attr('aria-valuenow', emptyValue);
-		});
-	}
-
-	function RemoveTab(targetID) {
-		// This function will remove a tab by ID.
-		$('#' + targetID).remove(); // remove the Tab-Pane
-
-		// In the Tabs UL, find the href and remove the parent li associated.
-		$('#tabs').find('[href="#' + targetID + '"]').parent('li').remove();
-	}
-</script>
-<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+<div class="container">
+	<div class="wrapper row-fluid">
 
-	<div class="container">
+		<p class="headertext">Project Checklist</p>
 
-		<div class="wrapper row-fluid">
-			<p class="headertext">Product &#9989; Checklist</p>
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist" id="tabs">
-				<li role="presentation" class="active" id="newTab"><a href="#new" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></li>
-			</ul>
-			<!-- Tab info -->
-			<div class="tab-content" id="tab-content">
-				<div role="tabpanel" class="tab-pane active" id="new">
-					<p class="newProdNameText">New Product name:</p>
-					<input type="text" placeholder="    Product Name" id="newProductName">
-					<button class="btn" id="btnAddNew">Add</button>
-				</div>
-				<div role="tabpanel" class="tab-pane" id="template">
-					<div class="col-sm-6 content-left">
-						<div class="prod-files">
-							<h3 class="prod-header">Files:</h3>
-							<div class="row">
-								<div class="col-sm-6">
-									<span class="checkbox-text">Brochure &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">PDF Specs Active &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Application Diagram &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-								<div class="col-sm-6">
-									<span class="checkbox-text">CMS Specs HTML &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Panel Drawing &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Videos &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-							</div>
-						</div>
-						<div class="prod-img">
-							<h3 class="prod-header">Images:</h3>
-							<div class="row">
-								<div class="col-sm-6">
-									<span class="checkbox-text">Product Images &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Gallery &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-								<div class="col-sm-6">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 content-right">
-						<div class="prod-page">
-							<h3 class="prod-header">Product Page:</h3>
-							<div class="row">
-								<div class="col-sm-6">
-									<span class="checkbox-text">Product XML &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Features = Active &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Product Shortcuts on &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-								<div class="col-sm-6">
-									<span class="checkbox-text">Part numbers Active &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Product Page Live &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-							</div>
-						</div>
-						<div class="prod-land">
-							<h3 class="prod-header">Landing Page:</h3>
-							<div class="row">
-								<div class="col-sm-6">
-									<span class="checkbox-text">Landing Page Needed? &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Landing Page Slideshow &nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Landing Page Images &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-								<div class="col-sm-6">
-									<span class="checkbox-text">Landing Page Active &nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-							</div>
-						</div>
-						<div class="prod-other">
-							<h3 class="prod-header">Other:</h3>
-							<div class="row">
-								<div class="col-sm-6">
-									<span class="checkbox-text">Homepage Slide&nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Regen Search Suggestion&nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">Regen Nav Bar&nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-								<div class="col-sm-6">
-									<span class="checkbox-text">Regen Product shortcuts&nbsp;</span><input class="checkbox" type="checkbox"><br>
-									<span class="checkbox-text">AE Specs&nbsp;</span><input class="checkbox" type="checkbox">
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="btn btn-large btn-danger js-deletetab">Delete Tab</div>
-					<div class="progress">
-						<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow=""
-						aria-valuemin="0" aria-valuemax="100"></div>
-					</div>
-					
-				</div> 
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" role="tablist" id="tabs">
+			<li role="presentation" class="active" id="newTab"><a href="#new" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></li>                           
+		</ul>
+
+		<!-- Tab info -->
+		<div class="tab-content" id="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="new">
+				<p class="newProdNameText">New Product Name</p>
+				<input type="text" placeholder=" Product Name" id="newProductName"><br>
+				<button class="btn" id="btnAddNew">Add</button>
 			</div>
+			<div role="tabpanel" class="tab-pane" id="template">
+				<li class="closetab js-deletetab"><a href="#" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-remove-sign exit"></span></a></li>  
+				<div class="col-sm-6 content-left">
+					<div class="prod-files">
+						<h3 class="prod-header">Files</h3>
+						<div class="row">
+							<div class="col-sm-5">
+								<label><input class="checkbox" type="checkbox" value="Brochure">Brochure</label>
+								<label><input class="checkbox" type="checkbox" value="Specs HTML">Specs <i>HTML</i></label>						
+								<label><input class="checkbox" type="checkbox" value="Application Diagram"> Application Diagram</label>
+							</div>
+							<div class="col-sm-7">
+								<label><input class="checkbox" type="checkbox" value="Videos">Videos</label>
+								<label><input class="checkbox" type="checkbox" value="Specs PDF">Specs <i>PDF</i></label>
+								<label><input class="checkbox" type="checkbox" value="Panel Drawing">Panel Drawing</label>									
+							</div>
+						</div>
+					</div>
+					<div class="prod-img">
+						<h3 class="prod-header">Images</h3>
+						<div class="row">
+							<div class="col-sm-12">
+								<label><input class="checkbox" type="checkbox" value="Product Images">Product Images</label>
+								<label><input class="checkbox" type="checkbox" value="Gallery">Gallery</label>
+								<label><input class="checkbox" type="checkbox" value="Camera Icon">Camera Icon</label>
+							</div>								
+						</div>
+					</div>
+					<div class="prod-other">
+						<h3 class="prod-header">Miscellaneous</h3>
+						<div class="row">
+							<div class="col-sm-12">
+								<label><input class="checkbox" type="checkbox" value="Homepage Slide">Homepage Slide</label>
+								<label><input class="checkbox" type="checkbox" value="AE Specs">A&amp;E Specs</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 content-right">
+					<div class="prod-page">
+						<h3 class="prod-header">Product Page</h3>
+						<div class="row">
+							<div class="col-sm-5">
+								<label><input class="checkbox" type="checkbox" value="Product XML">Product XML</label>
+								<label><input class="checkbox" type="checkbox" value="Features Active">Features: Active</label>
+								<label><input class="checkbox" type="checkbox" value="Product Shortcuts: On">Product Shortcuts</label>
+							</div>
+							<div class="col-sm-7">
+								<label><input class="checkbox" type="checkbox" value="Part Numbers: Active">Part Numbers: Active</label>
+								<label><input class="checkbox" type="checkbox" value="Poduct Page: Live">Product Page: Live</label>
+							</div>
+						</div>
+					</div>
+					<div class="prod-land">
+						<h3 class="prod-header">Landing Page</h3>
+						<div class="row">
+							<div class="col-sm-5">
+								<label><input class="land-req" type="checkbox" value="Landing Page Needed?">Required?</label>
+							</div>
+							<div class="land-display col-sm-7">
+								<label><input class="checkbox" type="checkbox" value="Landing Page Slideshow">Slideshow</label>
+								<label><input class="checkbox" type="checkbox" value="Landing Page Images">Images</label>
+								<label><input class="checkbox" type="checkbox" value="Landing Page Active">Active</label>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="prod-other">
+						<h3 class="prod-header">Regenerate</h3>
+						<div class="row">
+							<div class="col-sm-12">									
+								<label><input class="checkbox" type="checkbox" value="Search Suggestion">Search Suggestion</label>
+								<label><input class="checkbox" type="checkbox" value="Sidebar Navigation">Sidebar Navigation</label>						
+								<label><input class="checkbox" type="checkbox" value="Product Shortcuts">Product Shortcuts</label>								
+							</div>
+						</div>
+					</div>                 
+
+				</div>
+
+				<div class="col-sm-12">
+					<div class="progress">
+						<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100">
+						</div>
+					</div>
+				</div>
+			</div> 
 		</div>
 	</div>
+</div>
 </body>
 </html>
