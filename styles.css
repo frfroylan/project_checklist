@@ -1,80 +1,122 @@
-*{
-    margin: 0;
-    padding: 0;
+html, body {
+	background-image: url('bg3.jpg');
+	background-position:center;
+	background-size: 100%;
+	height:100%;
 }
-.h1-text{
-    margin-left: 20px;
-    margin-top: 20px;
+.container {
+	background-color: white;
+	height: auto;
 }
-.wrapper{
-    width: 1400px;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 30px;
+.prod-files, 
+.prod-img, 
+.prod-other, 
+.prod-page,
+.prod-land{
+	margin-left: 20px;
+}
+.headertext{
+	margin-top: 20px;
+	font-family: 'Oswald';
+	font-size: 40px;	
+	letter-spacing: 2px;
+	text-align: center;
+	text-transform: uppercase;
+	color:#ddd;
 }
 .tab-pane{
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    margin-top: 30px;
-    /*border: 1px solid red;*/
+	height: auto;
+	margin: 0 auto;
+	margin-top: 30px;
 }
-.prod-files,
-.prod-img,
-.prod-page,
-.prod-land,
-.prod-other{
-    width: 100%;
-    height: auto;
-    /*border: 1px solid blue;*/
-}
-.prod-files > .row,
-.prod-img > .row,
-.prod-page > .row,
-.prod-land > .row,
-.prod-other > .row{
-    margin-left: 10px;
+#new {
+	margin-top: 50px;
+	text-align:center;
 }
 span{
-    display: inline-block;
-    margin-top: 5px;
+	display: inline-block;
+	margin-top: 5px;
 }
 .glyphicon{
-    display: inline;
-    margin: 0;
+	display: inline;
+	margin: 0;
+}
+.exit {
+	color: #CB2528;
+	font-size: 26px;	
+}
+.exit:hover {
+	color: #8A0002;
+}
+a { 
+	text-decoration: none !important;
+	cursor: pointer;
+}
+li.closetab {
+	float:right;
+	list-style: none;
+	margin-right: 20px;
 }
 .checkbox{
-    display: inline-block;
-    float: right;
-    cursor: pointer;
+	display: inline-block;
+	float: left;
+	cursor: pointer;
+	margin-top: 2px;
+	margin-right: 10px;
 }
 #newProductName{
-    height: 30px;
+	height: 33px;
+	width: 250px;
 }
-.newProdNameText{
-    font-size: 20px;
+p.newProdNameText {
+	font-size: 20px;
+	font-family: 'Karla', sans-serif;
+	font-weight: 700;
 }
-button{
-    width: 80px;
-    height: 30px;
-    border: none;
-    background-color: #1C3E6C;
-    color: #fff;
+.btn {
+	width:250px;
+	background-color: #2391D7;	
+	color: white;
+	font-weight:600;
+	margin-top: 10px;
 }
-button:hover{
-    background-color: #4A7EBA;
+.btn:hover {
+	background-color:#1E9624;
+	color: white;
 }
-#myProgress {
-    position: relative;
-    width: 1100px;
-    margin: 0 auto;
-    margin-top: 500px;
-    height: 30px;
-    background-color: lightgrey;
+#header-progress {
+	color: #1A8B3F;
+	text-align: center;
+	margin-right: 70px;
+	margin-top: 50px;
 }
-.myBar {
-    position: absolute;
-    width: 0px;
-    height: 100%;
-    background-color: #00B16A;
+.prod-header {
+	font-size: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	color: #65A1D1;
+}
+span.checkbox-text {
+	white-space: nowrap;
+	margin-top: -0px;
+	margin-left: 7px;
+}
+div.progress {
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+}
+label {
+	font-weight: 100;
+	margin-left: 18px;
+	display:block;
+	font-family: 'Arimo', sans-serif;
+	color:#464646;
+	font-size: 14px;
+}
+label input[type='checkbox']{
+	margin-left: -18px;
+}
+.checkbox:checked + label {
+	color: green;
 }
