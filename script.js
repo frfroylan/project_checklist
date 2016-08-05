@@ -1,5 +1,3 @@
-var landReq = false;
-
 // Document.Ready is the function that runs once on page load.
 // Wire up your event listeners here
 $(document).ready(function () {
@@ -39,33 +37,48 @@ function AddTabFromTemplate(newID) {
 	//Update ProgressBar
 	ProgressBar($newTab);
 
-	//If landing page is required show those checkboxes
-	$('.land-display').css('display', 'none');
-	$('.land-req').on('click', function() {
-		//Change the value of the progress bar increments to accommodate new checkboxes
-		landReq = true;
-		$('.land-display').toggle();
-	});
-
 }
 
 //Uses the newly created tab to target its progress bar
 function ProgressBar( currentTab){
+	//Grab all the checkboxes
 	var checkboxes = currentTab.find('.checkbox');
+	//Grab the Landing required checkboxes
+	var landDisp = currentTab.find('.land-display');
+	var landingPage = currentTab.find('.req');
+	var landReq = false;
+	landDisp.css('display', 'none');
+
+	//If landing page is required display the rest of the checkboxes
+	//	and updated the landReq bool
+	landingPage.on('click', function(){
+		if(landReq === false){
+			landDisp.toggle();
+			landReq = true;
+		}
+		else if(landReq === true){
+			landDisp.toggle();
+			landReq = false;
+		}
+	})
+
 	checkboxes.on('click', function(){
 		var emptyValue = 0;
-
 		//Checks each checkbox in the tab for checked or not checked
-		checkboxes.each(function() {
+		checkboxes.each(function() {				
 			if($(this).is(':checked')){
+				//If the landing required checkbox is checked update 
+				//	the value of the emptyValue for progress bar
 				if(landReq === false){
-					emptyValue += 5.4;
+					emptyValue += 5.3;
 				}
-				else{
-					emptyValue += 4.6;
+				else if(landReq === true){
+					emptyValue += 4.4;
 				}
 			}
 		});
+
+		//Progressbar update section
 		if(emptyValue > 30 && emptyValue < 70 ){
 			currentTab.find('.progress-bar').removeClass('progress-bar-danger');
 			currentTab.find('.progress-bar').addClass('progress-bar-warning');
