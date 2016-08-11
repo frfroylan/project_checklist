@@ -32,17 +32,20 @@ function AddTabFromTemplate(newID) {
 	$newTab.insertBefore('#new');
 
 	// Create the tab item, too
-	$('<li role="presentation"><a href="#' + domID + '" role="tab" data-toggle="tab">' + newID + '</a></li>').insertBefore('#newTab');
+	var tab = $('<li role="presentation"><a href="#' + domID + '" role="tab" data-toggle="tab">' + newID + '</a></li>').insertBefore('#newTab');
+	tab = tab.find('a');
 
 	//Update ProgressBar
-	ProgressBar($newTab);
+	ProgressBar($newTab, tab);
 
 }
 
 //Uses the newly created tab to target its progress bar
-function ProgressBar( currentTab){
+function ProgressBar( currentTab, liTab){
 	//Grab all the checkboxes
 	var checkboxes = currentTab.find('.checkbox');
+	liTab.css('background-color', '#D9534F');// red = #D9534F;
+
 	//Grab the Landing required checkboxes
 	var landDisp = currentTab.find('.land-display');
 	var landingPage = currentTab.find('.req');
@@ -77,15 +80,16 @@ function ProgressBar( currentTab){
 				}
 			}
 		});
-
 		//Progressbar update section
 		if(emptyValue > 30 && emptyValue < 70 ){
 			currentTab.find('.progress-bar').removeClass('progress-bar-danger');
 			currentTab.find('.progress-bar').addClass('progress-bar-warning');
+			liTab.css('background-color', '#F0AD4E');// yellow = #F0AD4E;
 		}
 		else if(emptyValue >= 70){
 			currentTab.find('.progress-bar').removeClass('progress-bar-warning');
 			currentTab.find('.progress-bar').addClass('progress-bar-success');
+			liTab.css('background-color', '#5CB85C');// green = #5CB85C;
 		}
 		currentTab.find('.progress-bar').css('width', emptyValue + '%').attr('aria-valuenow', emptyValue);
 	});
