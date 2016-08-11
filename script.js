@@ -44,8 +44,10 @@ function AddTabFromTemplate(newID) {
 function ProgressBar( currentTab, liTab){
 	//Grab all the checkboxes
 	var checkboxes = currentTab.find('.checkbox');
-	liTab.css('background-color', '#D9534F');// red = #D9534F;
-
+	liTab.css({ 
+		'background-color': '#D9534F',// red = #D9534F;
+		'color': 'white'
+	});
 	//Grab the Landing required checkboxes
 	var landDisp = currentTab.find('.land-display');
 	var landingPage = currentTab.find('.req');
@@ -80,6 +82,7 @@ function ProgressBar( currentTab, liTab){
 				}
 			}
 		});
+
 		//Progressbar update section
 		if(emptyValue > 30 && emptyValue < 70 ){
 			currentTab.find('.progress-bar').removeClass('progress-bar-danger');
